@@ -1,0 +1,2 @@
+# Twitter Clone
+This is a simple web based Twitter clone that was created to practice development with PHP and MySQL. This was NOT designed to copy how engineers at Twitter actually do it, or to scale to massive proportions.
