@@ -10,7 +10,9 @@ use twitter_clone;
 );
   CREATE TABLE tweets (
 	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-	user_id INT(11) UNSIGNED FOREIGN KEY,
+	user_id INT(11) UNSIGNED,
+  FOREIGN KEY (user_id)
+    REFERENCES users(id),
 	content VARCHAR(140) NOT NULL,
 	date TIMESTAMP
 );
