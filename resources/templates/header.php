@@ -3,6 +3,8 @@ require_once "../src/common.php";
 $logged_in = FALSE;
 if(isset($_SESSION['login_user'])){
   $logged_in = TRUE;
+  $username = $_SESSION['login_user'];
+  $user_id = $_SESSION['login_id'];
 }
 ?>
 <!DOCTYPE html>
@@ -32,11 +34,15 @@ if(isset($_SESSION['login_user'])){
           <?php 
           if($logged_in){
             echo '<li><a href="logout.php">Logout</a></li>';
+            echo '<li><a href="user.php?id='.$user_id.'">'.$username.'</a></li>';
            } 
            else {
             echo '<li><a href="login.php">Login</a></li>';
             echo '<li><a href="register.php">Register</a></li>';
           }?>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="about.php">About</a></li>
         </ul>
       </div>
     </div>

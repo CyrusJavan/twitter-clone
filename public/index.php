@@ -14,7 +14,12 @@ if (isset($_SESSION['login_user'])) {
 // Later we will only get tweets from people we follow
 if ($logged_in) {
     $connection = new PDO($dsn, $db_username, $db_password, $pdo_options);
-    $sql = "SELECT users.name, tweets.content, tweets.date FROM tweets JOIN users ON tweets.user_id = users.id ORDER BY tweets.date DESC";
+    $sql = "
+    SELECT users.name, tweets.content, tweets.date, tweets.user_id 
+    FROM tweets 
+    JOIN users ON tweets.user_id = users.id 
+    ORDER BY tweets.date DESC
+    ";
     $stmt = $connection->prepare($sql);
     if($stmt->execute()){
       $tweets = $stmt->fetchAll();
@@ -49,7 +54,7 @@ if ($logged_in) {
       <span class="card-title">Home Feed</span>
 <?php foreach($tweets as $tweet){ ?>
             <div class="card-panel mb-0 mt-0">
-              <span class="card-title"><?php echo $tweet['name'];?></span>
+              <span class="card-title"><a href="user.php?id=<?php echo $tweet['user_id']; ?>"><?php echo $tweet['name'];?></a></span>
               <span class="text"><?php echo $tweet['date'];?></span>
               <p><?php echo $tweet['content'];?></p>
             </div>
