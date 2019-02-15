@@ -3,6 +3,9 @@ require_once "../config/config.php";
 require_once "../src/common.php";
 include "../resources/templates/header.php";?>
 <?php
+if(isset($_SESSION['login_user'])){
+  header("location: index.php");
+}
 if (isset($_POST['submit'])) {
   if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) {
       die();
@@ -60,6 +63,8 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" class="btn btn-primary" value="Submit">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
       </form>
+      <br>
+      <a href="login.php">Already have an account? Login here.</a>
     </div>
   </div>
 </div>

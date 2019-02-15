@@ -13,6 +13,8 @@ if(isset($_SESSION['login_user'])){
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Twitter Clone</title>
   <link rel="stylesheet" href="../resources/css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
   <!-- Compiled and minified CSS -->
