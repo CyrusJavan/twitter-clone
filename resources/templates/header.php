@@ -1,3 +1,10 @@
+<?php
+require_once "../src/common.php";
+$logged_in = FALSE;
+if(isset($_SESSION['login_user'])){
+  $logged_in = TRUE;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +24,19 @@
 <header>
   <nav>
     <div class="nav-wrapper light-blue">
-      <a href="#" class="brand-logo center">Twitter Clone</a>
+      <a href="index.php" class="brand-logo center">Twitter Clone</a>
+      <div class="container">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <?php 
+          if($logged_in){
+            echo '<li><a href="logout.php">Logout</a></li>';
+           } 
+           else {
+            echo '<li><a href="login.php">Login</a></li>';
+            echo '<li><a href="register.php">Register</a></li>';
+          }?>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

@@ -1,7 +1,6 @@
-<?php include "../resources/templates/header.html";?>
 <?php
-   require "../config/config.php";
-   require "../src/common.php";
+   require_once "../config/config.php";
+   require_once "../src/common.php";
    
    if(isset($_POST['submit'])) {
       // username and password sent from form 
@@ -10,14 +9,23 @@
       
       $sql = "SELECT name, password FROM users WHERE email = ?";
       $stmt = $connection->prepare($sql);
+      $password = '';
       if ($stmt->execute(array($_POST['email']))) {
-        while ($row = $stmt->fetch()) {
-          print_r($row);
-        }
+        $row = $stmt->fetch();
+        $password = $row['password'];
+        $name = $row['name'];
       }
+      if(password_verify($_POST['password'], $password)) {
+        $_SESSION['login_user'] = $name;
+        
+        header("location: index.php");
+     }else {
+        $error = "Your Login Name or Password is invalid";
+        echo $error;
+     }
    }
 ?>
-
+<?php include "../resources/templates/header.php";?>
 
 <div class="row">
   <div class="col-md-6 mx-auto">

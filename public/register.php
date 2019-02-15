@@ -1,7 +1,8 @@
-<?php include "../resources/templates/header.html";?>
+<?php 
+require_once "../config/config.php";
+require_once "../src/common.php";
+include "../resources/templates/header.php";?>
 <?php
-require "../config/config.php";
-require "../src/common.php";
 if (isset($_POST['submit'])) {
   if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) {
       die();

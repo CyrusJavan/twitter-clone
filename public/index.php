@@ -1,4 +1,15 @@
-<?php include "../resources/templates/header.html";?>
+<?php require_once "../src/common.php"; ?>
+<?php include "../resources/templates/header.php";?>
+<?php
+  if(isset($_SESSION['login_user'])){
+    ?>
+    <p><?php
+    echo 'You are logged in as '.$_SESSION['login_user'];
+    ?>
+    </p>
+    <?php
+  }
+?>
 <div class="container center">
 <h1>Welcome to the Twitter Clone</h1>
 <div class="container">
