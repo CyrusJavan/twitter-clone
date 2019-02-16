@@ -34,6 +34,7 @@ if(isset($_SESSION['login_user'])){
           <?php 
           if($logged_in){
             echo '<li><a href="logout.php">Logout</a></li>';
+            echo '<li><a href="user_list.php">Users</a></li>';
             echo '<li><a href="user.php?id='.$header_user_id.'">'.$header_username.'</a></li>';
            } 
            else {
