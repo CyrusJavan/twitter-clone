@@ -17,4 +17,10 @@ use twitter_clone;
 	content VARCHAR(140) NOT NULL,
 	date TIMESTAMP
 );
+  CREATE TABLE follows (
+    id INT(11) UNSIGNED,
+    follows_id INT(11) UNSIGNED
+  );
+
+
 

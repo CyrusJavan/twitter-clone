@@ -17,11 +17,12 @@ if ($logged_in) {
     $sql = "
     SELECT users.name, tweets.content, tweets.date, tweets.user_id 
     FROM tweets 
-    JOIN users ON tweets.user_id = users.id 
+    JOIN users ON tweets.user_id = users.id
+    WHERE tweets.user_id IN (SELECT follows_id FROM follows WHERE id = ?)
     ORDER BY tweets.date DESC
     ";
     $stmt = $connection->prepare($sql);
-    if($stmt->execute()){
+    if($stmt->execute(array($_SESSION['login_id']))){
       $tweets = $stmt->fetchAll();
     }
 }
