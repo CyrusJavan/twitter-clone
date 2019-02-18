@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
   <div class="col-md-6 mx-auto">
     <div class="card card-body">
       <h3 class="text-center">Account Registration</h3>
-      <form action="register.php" method="POST">
+      <form action="register.php" id="register_form" method="POST">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" name="name" required>
@@ -54,19 +54,41 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" required>
+          <input type="password" class="form-control" name="password" id="password" required>
         </div>
         <div class="form-group">
           <label for="password2">Confirm Password</label>
-          <input type="password" class="form-control" name="password2" required>
+          <input type="password" class="form-control" name="password2" id="password2" required>
         </div>
+        <div id="password_error"><p>Error: Passwords must match.</p></div>
         <input type="submit" name="submit" class="btn btn-primary" value="Submit">
         <input name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
+        
       </form>
       <br>
       <a href="login.php">Already have an account? Login here.</a>
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  var formValidated;
+  $("#password_error").hide();
+  $("#register_form").submit(function(){
+    return formValidated;
+  });
+  $("#password,#password2").keyup(() => {
+    if($("#password").val() !== $("#password2").val()){
+      $("#password_error").show();
+      formValidated = false;
+    }
+    else {
+      $("#password_error").hide();
+      formValidated = true;
+    }
+  });
+});
+</script>
 
 <?php include "../resources/templates/footer.html";?>
